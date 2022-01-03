@@ -17,8 +17,9 @@ app.use(helmet());
 
 // Set up Mongoose Connection
 const mongoose = require("mongoose");
-const mongoDB =
+const dev_db_url =
   "mongodb+srv://mongo-student:mongo-student@sandbox.niujj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
